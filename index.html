@@ -2,230 +2,237 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Fileeno | مدیریت فایل‌های ملکی</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fileeno | مدیریت فایل ملکی</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f4f6f5;
-    color:#1d2924;
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:#f4f6f5;
+color:#1d2924
 }
 
 .container{
-    width:min(100% - 30px,1000px);
-    margin:auto;
+width:min(100% - 24px,1000px);
+margin:auto
 }
 
 header{
-    background:#123c2d;
-    color:white;
-    padding:25px 0;
-    box-shadow:0 3px 12px rgba(0,0,0,.15);
+background:#123c2d;
+color:white;
+padding:25px 0;
+box-shadow:0 3px 15px #0002
 }
 
 .logo{
-    font-size:30px;
-    font-weight:bold;
+font-size:30px;
+font-weight:bold
 }
 
 .subtitle{
-    margin-top:7px;
-    opacity:.85;
+margin-top:7px;
+opacity:.85
 }
 
-.hero{
-    background:white;
-    margin-top:25px;
-    padding:25px;
-    border-radius:18px;
-    text-align:center;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+.hero,.box{
+background:white;
+margin-top:20px;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 18px #0000000d
 }
 
-.hero h1{
-    margin-top:0;
-    color:#123c2d;
+.hero{text-align:center}
+
+h1,h2,h3{
+color:#123c2d
 }
+
+h1{margin-top:0}
 
 .btn{
-    border:0;
-    border-radius:10px;
-    padding:13px 20px;
-    font-size:15px;
-    cursor:pointer;
-    font-family:inherit;
+border:0;
+border-radius:10px;
+padding:12px 16px;
+font-family:inherit;
+font-size:14px;
+cursor:pointer;
+margin:4px
 }
 
 .primary{
-    background:#123c2d;
-    color:white;
+background:#123c2d;
+color:white
 }
 
 .secondary{
-    background:#e8eeeb;
-    color:#123c2d;
+background:#e7eeea;
+color:#123c2d
 }
 
-.form-box,
-.files-box,
-.search-box{
-    background:white;
-    margin-top:20px;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+.whatsapp{
+background:#16844d;
+color:white
 }
 
-.hidden{
-    display:none;
+.danger{
+background:#f8dddd;
+color:#9b2222
 }
 
-h2{
-    color:#123c2d;
-    margin-top:0;
+.hidden{display:none}
+
+.category-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-top:18px
+}
+
+.category{
+background:#f7faf8;
+border:1px solid #d9e2dc;
+border-radius:14px;
+padding:18px 8px;
+text-align:center;
+cursor:pointer;
+font-weight:bold
+}
+
+.category:hover{
+border-color:#123c2d
 }
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-label{
-    display:block;
-    font-size:14px;
-    margin-bottom:6px;
-    font-weight:bold;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #d5ddd8;
-    border-radius:9px;
-    font-family:inherit;
-    font-size:14px;
-    outline:none;
-}
-
-textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#123c2d;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px
 }
 
 .full{
-    grid-column:1 / -1;
+grid-column:1/-1
 }
 
-/* کادرهای جداگانه */
+label{
+display:block;
+font-weight:bold;
+font-size:13px;
+margin-bottom:6px
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d5ddd8;
+border-radius:9px;
+font-family:inherit;
+font-size:14px;
+outline:none
+}
+
+textarea{
+min-height:90px;
+resize:vertical
+}
+
 .options{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:15px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:10px
 }
 
-.option-box{
-    border:1px solid #d9e1dc;
-    border-radius:12px;
-    padding:15px;
-    background:#fafcfb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    cursor:pointer;
-    transition:.2s;
+.option{
+border:1px solid #d8e0db;
+background:#fafcfb;
+border-radius:12px;
+padding:14px;
+text-align:center;
+cursor:pointer
 }
 
-.option-box:hover{
-    border-color:#123c2d;
-    background:#f1f6f3;
-}
-
-.option-box input{
-    width:auto;
-    transform:scale(1.2);
-}
-
-.form-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:18px;
-}
-
-.search-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr auto;
-    gap:12px;
+.option input{
+width:auto
 }
 
 .property{
-    border:1px solid #dce3df;
-    background:#fbfcfb;
-    border-radius:14px;
-    padding:17px;
-    margin-top:14px;
+border:1px solid #dce3df;
+border-radius:14px;
+padding:16px;
+margin-top:12px;
+background:#fbfcfb
 }
 
 .property h3{
-    margin-top:0;
-    color:#123c2d;
+margin-top:0
 }
 
 .price{
-    font-weight:bold;
-    color:#0c7650;
+color:#087346;
+font-weight:bold
+}
+
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:4px;
+margin-top:12px
+}
+
+.search{
+display:grid;
+grid-template-columns:1fr 1fr auto;
+gap:10px
+}
+
+.customer{
+border:1px solid #dce3df;
+border-radius:14px;
+padding:16px;
+margin-top:12px
 }
 
 .empty{
-    text-align:center;
-    padding:25px;
-    color:#777;
+text-align:center;
+padding:25px;
+color:#777
 }
 
 footer{
-    text-align:center;
-    padding:30px 0;
-    color:#777;
+text-align:center;
+padding:30px;
+color:#777
 }
 
 @media(max-width:650px){
 
-    .grid{
-        grid-template-columns:1fr;
-    }
+.category-grid{
+grid-template-columns:repeat(2,1fr)
+}
 
-    .options{
-        grid-template-columns:1fr;
-    }
+.grid{
+grid-template-columns:1fr
+}
 
-    .search-grid{
-        grid-template-columns:1fr;
-    }
+.full{
+grid-column:auto
+}
 
-    .full{
-        grid-column:auto;
-    }
+.options{
+grid-template-columns:1fr
+}
 
-    .logo{
-        font-size:25px;
-    }
+.search{
+grid-template-columns:1fr
+}
+
+.logo{
+font-size:25px
+}
+
 }
 </style>
 </head>
@@ -234,34 +241,73 @@ footer{
 
 <header>
 <div class="container">
-    <div class="logo">Fileeno</div>
-    <div class="subtitle">مدیریت هوشمند فایل‌های ملکی</div>
+<div class="logo">Fileeno</div>
+<div class="subtitle">مدیریت هوشمند فایل‌های ملکی</div>
 </div>
 </header>
 
 <main class="container">
 
 <section class="hero">
-    <h1>مدیریت فایل‌های ملکی</h1>
-    <p>فایل‌های ملکی خودت را ثبت، ذخیره و سریع جستجو کن.</p>
 
-    <button class="btn primary" onclick="showRegister()">
-        + ثبت فایل جدید
-    </button>
+<h1>Fileeno</h1>
 
-    <button class="btn secondary" onclick="showFiles()">
-        مشاهده فایل‌ها
-    </button>
+<p>مدیریت فایل‌های ملکی و مشتریان</p>
+
+<div class="category-grid">
+
+<div class="category" onclick="openCategory('فروش آپارتمان')">
+🏢<br>فروش آپارتمان
+</div>
+
+<div class="category" onclick="openCategory('رهن و اجاره')">
+🔑<br>رهن و اجاره
+</div>
+
+<div class="category" onclick="openCategory('کلنگی')">
+🏚️<br>کلنگی
+</div>
+
+<div class="category" onclick="showCustomers()">
+👤<br>مشتریان
+</div>
+
+</div>
+
+<br>
+
+<button class="btn primary" onclick="showRegister()">
++ ثبت فایل جدید
+</button>
+
+<button class="btn secondary" onclick="showAllFiles()">
+📁 همه فایل‌ها
+</button>
+
+<button class="btn secondary" onclick="showCustomerForm()">
++ ثبت مشتری
+</button>
+
 </section>
 
 
 <!-- ثبت فایل -->
 
-<section id="registerBox" class="form-box hidden">
+<section id="registerBox" class="box hidden">
 
-<h2>ثبت فایل جدید</h2>
+<h2 id="formTitle">ثبت فایل جدید</h2>
 
 <div class="grid">
+
+<div>
+<label>دسته‌بندی</label>
+<select id="category">
+<option value="">انتخاب کنید</option>
+<option>فروش آپارتمان</option>
+<option>رهن و اجاره</option>
+<option>کلنگی</option>
+</select>
+</div>
 
 <div>
 <label>نوع ملک</label>
@@ -278,32 +324,32 @@ footer{
 
 <div>
 <label>متراژ</label>
-<input id="area" type="number" placeholder="مثلاً ۱۲۰">
+<input id="area" type="number" placeholder="مثلاً 120">
 </div>
 
 <div>
-<label>قیمت (میلیارد تومان)</label>
-<input id="price" type="number" step="0.1" placeholder="مثلاً ۷.۵">
+<label>قیمت / مبلغ (میلیارد تومان)</label>
+<input id="price" type="number" step="0.1" placeholder="مثلاً 7.5">
 </div>
 
 <div>
 <label>تعداد خواب</label>
-<input id="rooms" type="number" placeholder="مثلاً ۲">
+<input id="rooms" type="number" placeholder="مثلاً 2">
 </div>
 
 <div>
 <label>منطقه / محله</label>
-<input id="location" type="text" placeholder="مثلاً افسریه">
+<input id="location" placeholder="مثلاً افسریه">
 </div>
 
 <div>
 <label>طبقه</label>
-<input id="floor" type="number" placeholder="مثلاً ۳">
+<input id="floor" type="number" placeholder="مثلاً 3">
 </div>
 
 <div>
-<label>شماره تماس</label>
-<input id="phone" type="tel" placeholder="مثلاً 0912...">
+<label>شماره تماس مالک</label>
+<input id="phone" type="tel" placeholder="0912...">
 </div>
 
 <div class="full">
@@ -313,38 +359,34 @@ footer{
 
 </div>
 
-
-<!-- امکانات جداگانه -->
-
-<label style="margin-top:20px;">امکانات ملک</label>
+<label style="margin-top:18px">امکانات</label>
 
 <div class="options">
 
-<label class="option-box">
+<label class="option">
 <input type="checkbox" id="parking">
-<span>🚗 پارکینگ</span>
+🚗 پارکینگ
 </label>
 
-<label class="option-box">
+<label class="option">
 <input type="checkbox" id="elevator">
-<span>🛗 آسانسور</span>
+🛗 آسانسور
 </label>
 
-<label class="option-box">
+<label class="option">
 <input type="checkbox" id="storage">
-<span>📦 انباری</span>
+📦 انباری
 </label>
 
 </div>
 
+<div style="margin-top:15px">
 
-<div class="form-buttons">
-
-<button class="btn primary" onclick="addProperty()">
-ثبت فایل
+<button class="btn primary" onclick="saveProperty()">
+ذخیره فایل
 </button>
 
-<button class="btn secondary" onclick="hideRegister()">
+<button class="btn secondary" onclick="cancelEdit()">
 انصراف
 </button>
 
@@ -355,11 +397,11 @@ footer{
 
 <!-- جستجو -->
 
-<section class="search-box">
+<section class="box">
 
-<h2>جستجوی فایل بر اساس قیمت</h2>
+<h2>🔍 جستجوی فایل</h2>
 
-<div class="search-grid">
+<div class="search">
 
 <input id="minPrice" type="number" step="0.1" placeholder="حداقل قیمت">
 
@@ -371,25 +413,105 @@ footer{
 
 </div>
 
-<div id="results"></div>
+<div id="searchResults"></div>
 
 </section>
 
 
-<!-- فایل‌ها -->
+<!-- فایل ها -->
 
-<section id="filesBox" class="files-box">
+<section id="filesBox" class="box">
 
-<h2>فایل‌های ثبت شده</h2>
+<h2 id="filesTitle">📁 فایل‌ها</h2>
 
-<div id="propertyList">
-<div class="empty">هنوز فایلی ثبت نشده است.</div>
+<div id="propertyList"></div>
+
+</section>
+
+
+<!-- مشتری -->
+
+<section id="customerBox" class="box hidden">
+
+<h2 id="customerFormTitle">👤 ثبت اطلاعات مشتری</h2>
+
+<div class="grid">
+
+<div>
+<label>نام مشتری</label>
+<input id="customerName" placeholder="نام و نام خانوادگی">
 </div>
+
+<div>
+<label>شماره تماس مشتری</label>
+<input id="customerPhone" type="tel" placeholder="0912...">
+</div>
+
+<div>
+<label>نوع ملک موردنظر</label>
+<select id="customerType">
+<option value="">انتخاب کنید</option>
+<option>آپارتمان</option>
+<option>خانه</option>
+<option>ویلا</option>
+<option>زمین</option>
+<option>مغازه</option>
+<option>دفتر کار</option>
+</select>
+</div>
+
+<div>
+<label>محله موردنظر</label>
+<input id="customerLocation" placeholder="مثلاً افسریه">
+</div>
+
+<div>
+<label>حداقل بودجه</label>
+<input id="customerMin" type="number" step="0.1">
+</div>
+
+<div>
+<label>حداکثر بودجه</label>
+<input id="customerMax" type="number" step="0.1">
+</div>
+
+<div>
+<label>متراژ موردنظر</label>
+<input id="customerArea" type="number">
+</div>
+
+<div>
+<label>تعداد خواب</label>
+<input id="customerRooms" type="number">
+</div>
+
+<div class="full">
+<label>توضیحات و خواسته مشتری</label>
+<textarea id="customerDescription"></textarea>
+</div>
+
+</div>
+
+<button class="btn primary" onclick="saveCustomer()">
+ذخیره مشتری
+</button>
+
+<button class="btn secondary" onclick="hideCustomers()">
+انصراف
+</button>
+
+</section>
+
+
+<section id="customersListBox" class="box hidden">
+
+<h2>👤 مشتریان</h2>
+
+<div id="customersList"></div>
 
 </section>
 
 </main>
-
 
 <footer>
 Fileeno © 2026
@@ -401,323 +523,820 @@ Fileeno © 2026
 let properties =
 JSON.parse(localStorage.getItem("fileinoProperties") || "[]");
 
+let customers =
+JSON.parse(localStorage.getItem("fileinoCustomers") || "[]");
 
-function saveProperties(){
+let editingId = null;
+let editingCustomerId = null;
 
-    localStorage.setItem(
-        "fileinoProperties",
-        JSON.stringify(properties)
-    );
+
+function saveData(){
+localStorage.setItem(
+"fileinoProperties",
+JSON.stringify(properties)
+);
+}
+
+
+function saveCustomersData(){
+localStorage.setItem(
+"fileinoCustomers",
+JSON.stringify(customers)
+);
+}
+
+
+function showRegister(category=""){
+
+document.getElementById("registerBox")
+.classList.remove("hidden");
+
+document.getElementById("customerBox")
+.classList.add("hidden");
+
+if(category){
+document.getElementById("category").value=category;
+}
+
+document.getElementById("registerBox")
+.scrollIntoView({behavior:"smooth"});
 
 }
 
 
-function showRegister(){
+function openCategory(category){
 
-    const box =
-    document.getElementById("registerBox");
+document.getElementById("filesBox")
+.classList.remove("hidden");
 
-    box.classList.remove("hidden");
+document.getElementById("filesTitle").innerText=
+"📁 "+category;
 
-    box.scrollIntoView({
-        behavior:"smooth"
-    });
+const list=properties.filter(
+p=>p.category===category
+);
 
-}
+renderProperties(list);
 
-
-function hideRegister(){
-
-    document
-    .getElementById("registerBox")
-    .classList.add("hidden");
+document.getElementById("filesBox")
+.scrollIntoView({behavior:"smooth"});
 
 }
 
 
-function addProperty(){
+function showAllFiles(){
 
-    const type =
-    document.getElementById("type").value;
+document.getElementById("filesTitle").innerText=
+"📁 همه فایل‌ها";
 
-    const area =
-    document.getElementById("area").value;
+renderProperties(properties);
 
-    const price =
-    document.getElementById("price").value;
-
-    const rooms =
-    document.getElementById("rooms").value;
-
-    const location =
-    document.getElementById("location").value;
-
-    const floor =
-    document.getElementById("floor").value;
-
-    const phone =
-    document.getElementById("phone").value;
-
-    const description =
-    document.getElementById("description").value;
-
-
-    if(!type || !area || !price || !location){
-
-        alert(
-            "نوع ملک، متراژ، قیمت و منطقه را وارد کن."
-        );
-
-        return;
-    }
-
-
-    const property = {
-
-        id:Date.now(),
-
-        type:type,
-
-        area:area,
-
-        price:price,
-
-        rooms:rooms,
-
-        location:location,
-
-        floor:floor,
-
-        phone:phone,
-
-        description:description,
-
-        parking:
-        document.getElementById("parking").checked,
-
-        elevator:
-        document.getElementById("elevator").checked,
-
-        storage:
-        document.getElementById("storage").checked
-
-    };
-
-
-    properties.push(property);
-
-    saveProperties();
-
-    renderProperties();
-
-    clearForm();
-
-    alert("✅ فایل با موفقیت ذخیره شد.");
+document.getElementById("filesBox")
+.scrollIntoView({behavior:"smooth"});
 
 }
 
 
-function clearForm(){
+function saveProperty(){
 
-    document.getElementById("type").value="";
+const category=
+document.getElementById("category").value;
 
-    document.getElementById("area").value="";
+const type=
+document.getElementById("type").value;
 
-    document.getElementById("price").value="";
+const area=
+document.getElementById("area").value;
 
-    document.getElementById("rooms").value="";
+const price=
+document.getElementById("price").value;
 
-    document.getElementById("location").value="";
+const rooms=
+document.getElementById("rooms").value;
 
-    document.getElementById("floor").value="";
+const location=
+document.getElementById("location").value;
 
-    document.getElementById("phone").value="";
+const floor=
+document.getElementById("floor").value;
 
-    document.getElementById("description").value="";
+const phone=
+document.getElementById("phone").value;
 
-    document.getElementById("parking").checked=false;
+const description=
+document.getElementById("description").value;
 
-    document.getElementById("elevator").checked=false;
 
-    document.getElementById("storage").checked=false;
+if(!category || !type || !area || !price || !location){
+
+alert(
+"دسته‌بندی، نوع ملک، متراژ، قیمت و منطقه را وارد کن."
+);
+
+return;
 
 }
 
 
-function renderProperties(list=properties){
+const property={
 
-    const box =
-    document.getElementById("propertyList");
+id:editingId || Date.now(),
+
+category,
+type,
+area,
+price,
+rooms,
+location,
+floor,
+phone,
+description,
+
+parking:
+document.getElementById("parking").checked,
+
+elevator:
+document.getElementById("elevator").checked,
+
+storage:
+document.getElementById("storage").checked
+
+};
 
 
-    if(!list.length){
+if(editingId){
 
-        box.innerHTML =
-        '<div class="empty">هنوز فایلی ثبت نشده است.</div>';
+const index=properties.findIndex(
+p=>p.id===editingId
+);
 
-        return;
-    }
+properties[index]=property;
+
+alert("✅ فایل ویرایش شد.");
+
+}else{
+
+properties.push(property);
+
+alert("✅ فایل با موفقیت ذخیره شد.");
+
+}
 
 
-    box.innerHTML = list.map(p => `
+saveData();
 
-        <div class="property">
+editingId=null;
 
-            <h3>
-            ${p.type} در ${p.location}
-            </h3>
+clearPropertyForm();
 
-            <p>
-            💰
-            <span class="price">
-            ${p.price} میلیارد تومان
-            </span>
-            </p>
+renderProperties(properties);
 
-            <p>
-            📐 ${p.area} متر
-            &nbsp;&nbsp;
-            🛏️ ${p.rooms || "-"} خواب
-            &nbsp;&nbsp;
-            🏢 طبقه ${p.floor || "-"}
-            </p>
+}
 
-            <p>
-            ${p.parking ? "🚗 پارکینگ" : ""}
-            ${p.elevator ? " | 🛗 آسانسور" : ""}
-            ${p.storage ? " | 📦 انباری" : ""}
-            </p>
 
-            <p>
-            📞 ${p.phone || "ثبت نشده"}
-            </p>
+function editProperty(id){
 
-            <p>
-            ${p.description || ""}
-            </p>
+const p=properties.find(
+x=>x.id===id
+);
 
-            <button
-            class="btn secondary"
-            onclick="deleteProperty(${p.id})">
-            🗑 حذف فایل
-            </button>
+if(!p)return;
 
-        </div>
+editingId=id;
 
-    `).join("");
+document.getElementById("formTitle").innerText=
+"✏️ ویرایش فایل";
+
+document.getElementById("category").value=p.category || "";
+
+document.getElementById("type").value=p.type || "";
+
+document.getElementById("area").value=p.area || "";
+
+document.getElementById("price").value=p.price || "";
+
+document.getElementById("rooms").value=p.rooms || "";
+
+document.getElementById("location").value=p.location || "";
+
+document.getElementById("floor").value=p.floor || "";
+
+document.getElementById("phone").value=p.phone || "";
+
+document.getElementById("description").value=p.description || "";
+
+document.getElementById("parking").checked=!!p.parking;
+
+document.getElementById("elevator").checked=!!p.elevator;
+
+document.getElementById("storage").checked=!!p.storage;
+
+showRegister();
+
+}
+
+
+function cancelEdit(){
+
+editingId=null;
+
+clearPropertyForm();
+
+document.getElementById("registerBox")
+.classList.add("hidden");
+
+}
+
+
+function clearPropertyForm(){
+
+document.getElementById("formTitle").innerText=
+"ثبت فایل جدید";
+
+document.getElementById("category").value="";
+
+document.getElementById("type").value="";
+
+document.getElementById("area").value="";
+
+document.getElementById("price").value="";
+
+document.getElementById("rooms").value="";
+
+document.getElementById("location").value="";
+
+document.getElementById("floor").value="";
+
+document.getElementById("phone").value="";
+
+document.getElementById("description").value="";
+
+document.getElementById("parking").checked=false;
+
+document.getElementById("elevator").checked=false;
+
+document.getElementById("storage").checked=false;
 
 }
 
 
 function deleteProperty(id){
 
-    properties =
-    properties.filter(
-        p => p.id !== id
-    );
+if(!confirm("این فایل حذف شود؟"))return;
 
-    saveProperties();
+properties=properties.filter(
+p=>p.id!==id
+);
 
-    renderProperties();
+saveData();
+
+renderProperties(properties);
+
+}
+
+
+function propertyText(p){
+
+let text=
+`🏠 ${p.type} در ${p.location}
+📁 ${p.category}
+📐 ${p.area} متر
+💰 ${p.price} میلیارد تومان
+🛏️ ${p.rooms || "-"} خواب
+🏢 طبقه ${p.floor || "-"}`;
+
+if(p.parking)text+="\n🚗 پارکینگ";
+
+if(p.elevator)text+="\n🛗 آسانسور";
+
+if(p.storage)text+="\n📦 انباری";
+
+if(p.description)
+text+=`\n📝 ${p.description}`;
+
+text+=
+"\n\n📞 جهت اطلاعات بیشتر پیام دهید.";
+
+return text;
+
+}
+
+
+function sendWhatsApp(id){
+
+const p=properties.find(
+x=>x.id===id
+);
+
+if(!p)return;
+
+const text=propertyText(p);
+
+window.open(
+"https://wa.me/?text="+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+
+function copyProperty(id){
+
+const p=properties.find(
+x=>x.id===id
+);
+
+if(!p)return;
+
+navigator.clipboard.writeText(
+propertyText(p)
+);
+
+alert("📋 اطلاعات فایل کپی شد.");
+
+}
+
+
+function renderProperties(list=properties){
+
+const box=
+document.getElementById("propertyList");
+
+if(!list.length){
+
+box.innerHTML=
+'<div class="empty">فایلی پیدا نشد.</div>';
+
+return;
+
+}
+
+
+box.innerHTML=list.map(p=>`
+
+<div class="property">
+
+<h3>
+${p.type} در ${p.location}
+</h3>
+
+<p>
+📁 ${p.category}
+</p>
+
+<p>
+💰
+<span class="price">
+${p.price} میلیارد تومان
+</span>
+</p>
+
+<p>
+📐 ${p.area} متر
+&nbsp;&nbsp;
+🛏️ ${p.rooms || "-"} خواب
+&nbsp;&nbsp;
+🏢 طبقه ${p.floor || "-"}
+</p>
+
+<p>
+${p.parking ? "🚗 پارکینگ" : ""}
+${p.elevator ? " | 🛗 آسانسور" : ""}
+${p.storage ? " | 📦 انباری" : ""}
+</p>
+
+<p>
+${p.description || ""}
+</p>
+
+<div class="actions">
+
+<button class="btn whatsapp"
+onclick="sendWhatsApp(${p.id})">
+📲 ارسال واتساپ
+</button>
+
+<button class="btn secondary"
+onclick="copyProperty(${p.id})">
+📋 کپی
+</button>
+
+<button class="btn secondary"
+onclick="editProperty(${p.id})">
+✏️ ویرایش
+</button>
+
+<button class="btn danger"
+onclick="deleteProperty(${p.id})">
+🗑 حذف
+</button>
+
+</div>
+
+</div>
+
+`).join("");
 
 }
 
 
 function searchProperties(){
 
-    const min =
-    parseFloat(
-        document.getElementById("minPrice").value
-    );
+const min=parseFloat(
+document.getElementById("minPrice").value
+);
 
-    const max =
-    parseFloat(
-        document.getElementById("maxPrice").value
-    );
+const max=parseFloat(
+document.getElementById("maxPrice").value
+);
 
-    const results =
-    document.getElementById("results");
+const result=
+document.getElementById("searchResults");
 
 
-    if(isNaN(min) || isNaN(max)){
+if(isNaN(min)||isNaN(max)){
 
-        results.innerHTML =
-        '<div class="empty">حداقل و حداکثر قیمت را وارد کنید.</div>';
+result.innerHTML=
+'<div class="empty">حداقل و حداکثر قیمت را وارد کنید.</div>';
 
-        return;
-    }
-
-
-    const matches =
-    properties.filter(p =>
-        Number(p.price) >= min &&
-        Number(p.price) <= max
-    );
-
-
-    if(!matches.length){
-
-        results.innerHTML =
-        '<div class="empty">در این بازه قیمتی فایلی پیدا نشد.</div>';
-
-        return;
-    }
-
-
-    results.innerHTML =
-    "<h3>فایل‌های مناسب مشتری:</h3>";
-
-
-    matches.forEach(p => {
-
-        results.innerHTML += `
-
-            <div class="property">
-
-                <h3>
-                ${p.type} در ${p.location}
-                </h3>
-
-                <p>
-                💰
-                <span class="price">
-                ${p.price} میلیارد تومان
-                </span>
-                </p>
-
-                <p>
-                📐 ${p.area} متر
-                &nbsp;&nbsp;
-                🛏️ ${p.rooms || "-"} خواب
-                </p>
-
-                <p>
-                📞 ${p.phone || "ثبت نشده"}
-                </p>
-
-            </div>
-
-        `;
-
-    });
+return;
 
 }
 
 
-function showFiles(){
+const matches=properties.filter(
+p=>Number(p.price)>=min &&
+Number(p.price)<=max
+);
 
-    document
-    .getElementById("filesBox")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
 
-    renderProperties();
+if(!matches.length){
+
+result.innerHTML=
+'<div class="empty">در این بازه قیمتی فایلی پیدا نشد.</div>';
+
+return;
 
 }
 
 
-renderProperties();
+result.innerHTML=
+"<h3>فایل‌های مناسب مشتری:</h3>";
+
+matches.forEach(p=>{
+
+result.innerHTML+=`
+
+<div class="property">
+
+<h3>${p.type} در ${p.location}</h3>
+
+<p>
+💰 <span class="price">
+${p.price} میلیارد تومان
+</span>
+</p>
+
+<p>
+📐 ${p.area} متر
+&nbsp;&nbsp;
+🛏️ ${p.rooms || "-"} خواب
+</p>
+
+<button class="btn whatsapp"
+onclick="sendWhatsApp(${p.id})">
+📲 ارسال واتساپ
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function showCustomerForm(){
+
+document.getElementById("customerBox")
+.classList.remove("hidden");
+
+document.getElementById("customersListBox")
+.classList.add("hidden");
+
+document.getElementById("customerBox")
+.scrollIntoView({behavior:"smooth"});
+
+}
+
+
+function saveCustomer(){
+
+const customer={
+
+id:editingCustomerId || Date.now(),
+
+name:document.getElementById("customerName").value,
+
+phone:document.getElementById("customerPhone").value,
+
+type:document.getElementById("customerType").value,
+
+location:document.getElementById("customerLocation").value,
+
+min:document.getElementById("customerMin").value,
+
+max:document.getElementById("customerMax").value,
+
+area:document.getElementById("customerArea").value,
+
+rooms:document.getElementById("customerRooms").value,
+
+description:
+document.getElementById("customerDescription").value
+
+};
+
+
+if(!customer.name){
+
+alert("نام مشتری را وارد کن.");
+
+return;
+
+}
+
+
+if(editingCustomerId){
+
+const index=customers.findIndex(
+c=>c.id===editingCustomerId
+);
+
+customers[index]=customer;
+
+alert("✅ اطلاعات مشتری ویرایش شد.");
+
+}else{
+
+customers.push(customer);
+
+alert("✅ مشتری ثبت شد.");
+
+}
+
+
+saveCustomersData();
+
+editingCustomerId=null;
+
+clearCustomerForm();
+
+renderCustomers();
+
+}
+
+
+function clearCustomerForm(){
+
+document.getElementById("customerFormTitle").innerText=
+"👤 ثبت اطلاعات مشتری";
+
+document.getElementById("customerName").value="";
+
+document.getElementById("customerPhone").value="";
+
+document.getElementById("customerType").value="";
+
+document.getElementById("customerLocation").value="";
+
+document.getElementById("customerMin").value="";
+
+document.getElementById("customerMax").value="";
+
+document.getElementById("customerArea").value="";
+
+document.getElementById("customerRooms").value="";
+
+document.getElementById("customerDescription").value="";
+
+}
+
+
+function editCustomer(id){
+
+const c=customers.find(
+x=>x.id===id
+);
+
+if(!c)return;
+
+editingCustomerId=id;
+
+document.getElementById("customerFormTitle").innerText=
+"✏️ ویرایش مشتری";
+
+document.getElementById("customerName").value=c.name || "";
+
+document.getElementById("customerPhone").value=c.phone || "";
+
+document.getElementById("customerType").value=c.type || "";
+
+document.getElementById("customerLocation").value=c.location || "";
+
+document.getElementById("customerMin").value=c.min || "";
+
+document.getElementById("customerMax").value=c.max || "";
+
+document.getElementById("customerArea").value=c.area || "";
+
+document.getElementById("customerRooms").value=c.rooms || "";
+
+document.getElementById("customerDescription").value=c.description || "";
+
+showCustomerForm();
+
+}
+
+
+function deleteCustomer(id){
+
+if(!confirm("این مشتری حذف شود؟"))return;
+
+customers=customers.filter(
+c=>c.id!==id
+);
+
+saveCustomersData();
+
+renderCustomers();
+
+}
+
+
+function renderCustomers(){
+
+const box=
+document.getElementById("customersList");
+
+if(!customers.length){
+
+box.innerHTML=
+'<div class="empty">هنوز مشتری ثبت نشده است.</div>';
+
+return;
+
+}
+
+
+box.innerHTML=customers.map(c=>`
+
+<div class="customer">
+
+<h3>👤 ${c.name}</h3>
+
+<p>📞 ${c.phone || "ثبت نشده"}</p>
+
+<p>
+🏠 ${c.type || "-"}
+&nbsp;&nbsp;
+📍 ${c.location || "-"}
+</p>
+
+<p>
+💰 بودجه:
+${c.min || "-"} تا ${c.max || "-"} میلیارد
+</p>
+
+<p>
+📐 ${c.area || "-"} متر
+&nbsp;&nbsp;
+🛏️ ${c.rooms || "-"} خواب
+</p>
+
+<p>
+${c.description || ""}
+</p>
+
+<button class="btn primary"
+onclick="findForCustomer(${c.id})">
+🔍 پیدا کردن فایل
+</button>
+
+<button class="btn secondary"
+onclick="editCustomer(${c.id})">
+✏️ ویرایش
+</button>
+
+<button class="btn danger"
+onclick="deleteCustomer(${c.id})">
+🗑 حذف
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function showCustomers(){
+
+document.getElementById("customerBox")
+.classList.add("hidden");
+
+document.getElementById("customersListBox")
+.classList.remove("hidden");
+
+renderCustomers();
+
+document.getElementById("customersListBox")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function hideCustomers(){
+
+document.getElementById("customersListBox")
+.classList.add("hidden");
+
+}
+
+
+function findForCustomer(id){
+
+const c=customers.find(
+x=>x.id===id
+);
+
+if(!c)return;
+
+let matches=properties;
+
+
+if(c.type){
+
+matches=matches.filter(
+p=>p.type===c.type
+);
+
+}
+
+
+if(c.location){
+
+matches=matches.filter(
+p=>p.location.includes(c.location)
+);
+
+}
+
+
+if(c.min){
+
+matches=matches.filter(
+p=>Number(p.price)>=Number(c.min)
+);
+
+}
+
+
+if(c.max){
+
+matches=matches.filter(
+p=>Number(p.price)<=Number(c.max)
+);
+
+}
+
+
+if(c.area){
+
+matches=matches.filter(
+p=>Number(p.area)>=Number(c.area)
+);
+
+}
+
+
+document.getElementById("filesTitle").innerText=
+"🔍 فایل‌های مناسب "+c.name;
+
+renderProperties(matches);
+
+document.getElementById("filesBox")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+renderProperties(properties);
 
 </script>
 
