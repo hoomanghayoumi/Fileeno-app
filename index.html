@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fileino | فایل‌های ملکی</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f4f6f8;
+  color:#17202a;
+}
+
+header{
+  background:#111827;
+  color:#fff;
+  padding:22px 0;
+}
+
+.container{
+  width:92%;
+  max-width:1000px;
+  margin:auto;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#60a5fa;
+}
+
+.hero{
+  text-align:center;
+  padding:55px 15px 30px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#2563eb;
+}
+
+.hero p{
+  color:#667085;
+  line-height:2;
+}
+
+.search-box{
+  background:#fff;
+  max-width:850px;
+  margin:20px auto 40px;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.07);
+}
+
+.search-box h2{
+  margin-top:0;
+  font-size:20px;
+}
+
+.inputs{
+  display:grid;
+  grid-template-columns:1fr 1fr auto;
+  gap:12px;
+  margin-top:20px;
+}
+
+input,button{
+  font-family:inherit;
+}
+
+input{
+  padding:14px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  font-size:15px;
+  width:100%;
+}
+
+button{
+  border:0;
+  background:#2563eb;
+  color:#fff;
+  padding:14px 25px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.results{
+  margin-top:25px;
+}
+
+.property{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:18px;
+  border-radius:14px;
+  margin-top:12px;
+}
+
+.property h3{
+  margin:0 0 10px;
+}
+
+.property p{
+  color:#667085;
+  line-height:2;
+  margin:0;
+}
+
+.empty{
+  text-align:center;
+  color:#667085;
+  padding:20px;
+}
+
+footer{
+  margin-top:60px;
+  background:#111827;
+  color:#cbd5e1;
+  text-align:center;
+  padding:25px;
+}
+
+@media(max-width:650px){
+  .inputs{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:27px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      File<span>ino</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>
+    جستجوی هوشمند <span>فایل‌های ملکی</span>
+  </h1>
+
+  <p>
+    بودجه مشتری را وارد کنید تا فایل‌های مناسب همان بازه نمایش داده شوند.
+  </p>
+</section>
+
+<section class="search-box">
+
+  <h2>🔎 جستجو بر اساس بودجه</h2>
+
+  <div class="inputs">
+
+    <input
+      id="minPrice"
+      type="number"
+      placeholder="حداقل قیمت - میلیارد تومان"
+    >
+
+    <input
+      id="maxPrice"
+      type="number"
+      placeholder="حداکثر قیمت - میلیارد تومان"
+    >
+
+    <button onclick="searchProperties()">
+      جستجو
+    </button>
+
+  </div>
+
+  <div id="results" class="results"></div>
+
+</section>
+
+<footer>
+  © 2026 Fileino | مدیریت هوشمند فایل‌های ملکی
+</footer>
+
+<script>
+
+const properties = [
+
+  {
+    title:"آپارتمان ۲ خواب",
+    price:7.5,
+    area:105,
+    rooms:2
+  },
+
+  {
+    title:"آپارتمان ۳ خواب",
+    price:8,
+    area:135,
+    rooms:3
+  },
+
+  {
+    title:"آپارتمان ۲ خواب",
+    price:4.8,
+    area:85,
+    rooms:2
+  },
+
+  {
+    title:"آپارتمان لوکس ۳ خواب",
+    price:10.5,
+    area:160,
+    rooms:3
+  }
+
+];
+
+function searchProperties(){
+
+  const min=parseFloat(
+    document.getElementById("minPrice").value
+  );
+
+  const max=parseFloat(
+    document.getElementById("maxPrice").value
+  );
+
+  const results=document.getElementById("results");
+
+  if(isNaN(min) || isNaN(max)){
+
+    results.innerHTML=
+      '<div class="empty">لطفاً حداقل و حداکثر قیمت را وارد کنید.</div>';
+
+    return;
+  }
+
+  const matches=properties.filter(function(property){
+
+    return property.price >= min &&
+           property.price <= max;
+
+  });
+
+  if(matches.length===0){
+
+    results.innerHTML=
+      '<div class="empty">در این بازه قیمتی فایلی پیدا نشد.</div>';
+
+    return;
+  }
+
+  results.innerHTML=matches.map(function(property){
+
+    return `
+      <div class="property">
+
+        <h3>${property.title}</h3>
+
+        <p>
+          💰 قیمت: ${property.price} میلیارد تومان
+          <br>
+          📐 متراژ: ${property.area} متر
+          <br>
+          🛏️ تعداد خواب: ${property.rooms}
+        </p>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+</script>
+
+</body>
+</html>
