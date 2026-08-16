@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fileeno | پنل مشاوران</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Tahoma,Arial;
+background:#f4f6f5;
+color:#24332c
+}
+
+header{
+background:#123c2d;
+color:white;
+padding:25px;
+text-align:center
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:15px
+}
+
+.box{
+background:white;
+padding:18px;
+margin:15px 0;
+border-radius:16px;
+box-shadow:0 3px 15px #0001
+}
+
+.search{
+display:grid;
+grid-template-columns:1fr 1fr 1fr auto;
+gap:10px
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:9px;
+font-family:inherit
+}
+
+button{
+border:0;
+border-radius:9px;
+padding:12px 16px;
+font-family:inherit;
+cursor:pointer
+}
+
+.primary{
+background:#123c2d;
+color:white
+}
+
+.green{
+background:#16844d;
+color:white
+}
+
+.card{
+border:1px solid #ddd;
+border-radius:14px;
+padding:16px;
+margin-top:12px
+}
+
+.price{
+color:#087346;
+font-weight:bold;
+font-size:18px
+}
+
+.empty{
+text-align:center;
+padding:30px;
+color:#777
+}
+
+@media(max-width:650px){
+.search{
+grid-template-columns:1fr
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>Fileeno</h1>
+
+<div>
+پنل فایل‌های مشاوران
+</div>
+
+</header>
+
+<main>
+
+<div class="box">
+
+<h2>🔎 جستجوی فایل</h2>
+
+<div class="search">
+
+<input
+id="location"
+placeholder="محله"
+>
+
+<input
+id="min"
+type="number"
+placeholder="حداقل قیمت"
+>
+
+<input
+id="max"
+type="number"
+placeholder="حداکثر قیمت"
+>
+
+<button
+class="primary"
+onclick="searchFiles()">
+جستجو
+</button>
+
+</div>
+
+<br>
+
+<button
+class="primary"
+onclick="loadFiles()">
+📁 نمایش همه فایل‌ها
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>🏠 فایل‌های آماده فروش</h2>
+
+<div id="list">
+در حال دریافت فایل‌ها...
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://wfiwtdffixbyrfttguyj.supabase.co";
+
+const SUPABASE_KEY =
+"YOUR_PUBLISHABLE_KEY";
+
+const db =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+async function loadFiles(){
+
+const {data,error}=await db
+.from("properties")
+.select(
+"id,category,type,area,price,rooms,location,description"
+)
+.order("id",{ascending:false});
+
+
+if(error){
+
+document.getElementById("list").innerHTML=
+"❌ خطا در دریافت فایل‌ها";
+
+console.log(error);
+
+return;
+
+}
+
+render(data||[]);
+
+}
+
+
+async function searchFiles(){
+
+const location=
+document.getElementById("location").value.trim();
+
+const min=
+Number(document.getElementById("min").value)||0;
+
+const max=
+Number(document.getElementById("max").value)||999999999;
+
+
+let query=
+db.from("properties")
+.select(
+"id,category,type,area,price,rooms,location,description"
+)
+.gte("price",min)
+.lte("price",max);
+
+
+if(location){
+
+query=query.ilike(
+"location",
+"%"+location+"%"
+);
+
+}
+
+
+const {data,error}=await query
+.order("id",{ascending:false});
+
+
+if(error){
+
+alert("خطا در جستجو");
+return;
+
+}
+
+render(data||[]);
+
+}
+
+
+function render(files){
+
+const box=
+document.getElementById("list");
+
+
+if(!files.length){
+
+box.innerHTML=
+'<div class="empty">فایلی پیدا نشد.</div>';
+
+return;
+
+}
+
+
+box.innerHTML=
+files.map(p=>`
+
+<div class="card">
+
+<h3>
+🏠 ${p.type||"ملک"}
+در ${p.location||"-"}
+</h3>
+
+<p>
+📁 ${p.category||"-"}
+</p>
+
+<p>
+📐 ${p.area||"-"} متر
+&nbsp;&nbsp;
+🛏️ ${p.rooms||"-"} خواب
+</p>
+
+<p>
+💰
+<span class="price">
+${p.price||"-"} میلیارد تومان
+</span>
+</p>
+
+<p>
+${p.description||""}
+</p>
+
+<button
+class="green"
+onclick="requestFile('${p.id}')">
+📲 درخواست فایل
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function requestFile(id){
+
+const text=
+"سلام، من مشاور املاک هستم و فایل شماره "+
+id+
+" را در Fileeno دیدم. لطفاً اطلاعات فایل را برای من ارسال کنید.";
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+
+loadFiles();
+
+</script>
+
+</body>
+</html>
