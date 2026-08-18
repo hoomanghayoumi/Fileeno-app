@@ -1348,17 +1348,31 @@ return;
 }
 
 alert("✅ فایل با موفقیت در Supabase ذخیره شد.");
+if (editingId) {
 
-properties.push(property);
+  const index = properties.findIndex(
+    p => p.id === editingId
+  );
 
-editingId=null;
-currentPhotos=[];
+  if (index !== -1) {
+    properties[index] = property;
+  }
+
+} else {
+
+  properties.push(property);
+
+}
+
+// ذخیره اطلاعات در مرورگر
+saveData();
+
+editingId = null;
+currentPhotos = [];
 
 clearPropertyForm();
 
 renderProperties(properties);
-
-}
 
 
 
