@@ -1299,66 +1299,27 @@ behavior:"smooth"
 
 function saveProperty(){
 
-const property={
+const property = {
 
-id:
-editingId ||
-Date.now(),
+id: editingId || Date.now(),
 
-category:
-document.getElementById("category").value,
+category: document.getElementById("category").value,
+type: document.getElementById("type").value,
+area: document.getElementById("area").value,
+price: document.getElementById("price").value,
+rooms: document.getElementById("rooms").value,
+location: document.getElementById("location").value,
+floor: document.getElementById("floor").value,
+phone: document.getElementById("phone").value,
+address: document.getElementById("address").value,
+description: document.getElementById("description").value,
 
-type:
-document.getElementById("type").value,
-
-area:
-document.getElementById("area").value,
-
-price:
-document.getElementById("price").value,
-
-rooms:
-document.getElementById("rooms").value,
-
-location:
-document.getElementById("location").value,
-
-floor:
-document.getElementById("floor").value,
-
-phone:
-document.getElementById("phone").value,
-
-address:
-document.getElementById("address").value,
-
-description:
-document.getElementById("description").value,
-
-parking:
-document.getElementById("parking").checked,
-
-elevator:
-document.getElementById("elevator").checked,
-
-storage:
-document.getElementById("storage").checked,
-
-terrace:
-document.getElementById("terrace").checked,
-pool:
-document.getElementById("pool").checked,
-
-sauna:
-document.getElementById("sauna").checked,
-
-master:
-document.getElementById("master").checked,
-photos:
-currentPhotos
+parking: document.getElementById("parking").checked,
+pool: document.getElementById("pool").checked,
+sauna: document.getElementById("sauna").checked,
+master_bedroom: document.getElementById("master").checked
 
 };
-
 
 if(
 !property.category ||
@@ -1368,40 +1329,67 @@ if(
 !property.location
 ){
 
-alert(
-"دسته‌بندی، نوع ملک، متراژ، قیمت و منطقه را وارد کن."
-);
+alert("دسته‌بندی، نوع ملک، متراژ، قیمت و منطقه را وارد کن.");
+return;
+
+}
+
+const { data, error } = await supabaseClient
+.from("properties")
+.insert([{
+
+title: property.type + " در " + property.location,
+
+deal_type: property.category,
+
+area: Number(property.area),
+
+bedrooms: Number(property.rooms) || null,
+
+parking: property.parking,
+
+pool: property.pool,
+
+sauna: property.sauna,
+
+master_bedroom: property.master_bedroom,
+
+category: property.category,
+
+type: property.type,
+
+price: Number(property.price),
+
+rooms: Number(property.rooms) || null,
+
+location: property.location,
+
+floor: Number(property.floor) || null,
+
+phone: property.phone,
+
+address: property.address,
+
+description: property.description
+
+}])
+.select();
+
+if(error){
+
+console.error(error);
+
+alert("❌ ذخیره نشد: " + error.message);
 
 return;
 
 }
 
-
-
-if(editingId){
-
-const index=
-properties.findIndex(
-p=>p.id===editingId
-);
-
-properties[index]=property;
-
-alert("✅ فایل ویرایش شد.");
-
-}else{
+alert("✅ فایل با موفقیت در Supabase ذخیره شد.");
 
 properties.push(property);
 
-alert("✅ فایل ذخیره شد.");
-
-}
-
-
-saveData();
-
 editingId=null;
-
 currentPhotos=[];
 
 clearPropertyForm();
