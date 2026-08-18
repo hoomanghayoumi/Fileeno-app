@@ -1069,7 +1069,12 @@ Fileeno © 2026
 
 
 <script>
-
+const SUPABASE_URL = "https://dnodndhknsxbcfxockdg.supabase.co";
+const SUPABASE_KEY = "کلید Publishable خودت";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 let properties =
 JSON.parse(
 localStorage.getItem("fileinoProperties") || "[]"
