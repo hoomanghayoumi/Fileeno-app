@@ -1179,21 +1179,89 @@ behavior:"smooth"
 
 function openCategory(category){
 
-document.getElementById("filesTitle").innerText=
-"📁 "+category;
+const areaRanges = [
+{min:0,max:50,title:"زیر ۵۰ متر"},
+{min:50,max:80,title:"۵۰ تا ۸۰ متر"},
+{min:80,max:120,title:"۸۰ تا ۱۲۰ متر"},
+{min:120,max:Infinity,title:"بالای ۱۲۰ متر"}
+];
 
-renderProperties(
-properties.filter(
-p=>p.category===category
-)
+const files = properties.filter(
+p => p.category === category
 );
 
-document.getElementById("filesBox")
-.scrollIntoView({
+const box = document.getElementById("propertyList");
+
+document.getElementById("filesTitle").innerText =
+"📁 " + category;
+
+if(!files.length){
+
+box.innerHTML =
+'<div class="empty">هنوز فایلی در این دسته ثبت نشده است.</div>';
+
+document.getElementById("filesBox").scrollIntoView({
+behavior:"smooth"
+});
+
+return;
+}
+
+box.innerHTML = areaRanges.map(range => {
+
+const group = files.filter(p =>
+Number(p.area) >= range.min &&
+Number(p.area) < range.max
+);
+
+if(!group.length) return "";
+
+return `
+<div class="property">
+
+<h3>
+📐 ${range.title}
+</h3>
+
+${group.map(p => `
+
+<div style="
+border-top:1px solid #ddd;
+padding-top:12px;
+margin-top:12px;
+">
+
+<h3>${p.type} در ${p.location}</h3>
+
+<p>
+💰 <span class="price">
+${p.price} میلیارد تومان
+</span>
+</p>
+
+<p>
+📐 ${p.area} متر
+&nbsp;&nbsp;
+🛏️ ${p.rooms || "-"} خواب
+&nbsp;&nbsp;
+🏢 طبقه ${p.floor || "-"}
+</p>
+
+</div>
+
+`).join("")}
+
+</div>
+`;
+
+}).join("");
+
+document.getElementById("filesBox").scrollIntoView({
 behavior:"smooth"
 });
 
 }
+
 
 
 
