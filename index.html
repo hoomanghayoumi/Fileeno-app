@@ -1178,7 +1178,6 @@ behavior:"smooth"
 /* دسته‌بندی */
 
 function openCategory(category){
-
 const areaRanges = [
 {min:0,max:50,title:"زیر ۵۰ متر"},
 {min:50,max:80,title:"۵۰ تا ۸۰ متر"},
@@ -1207,7 +1206,7 @@ behavior:"smooth"
 return;
 }
 
-box.innerHTML = areaRanges.map(range => {
+box.innerHTML = areaRanges.map((range,index) => {
 
 const group = files.filter(p =>
 Number(p.area) >= range.min &&
@@ -1217,44 +1216,51 @@ Number(p.area) < range.max
 if(!group.length) return "";
 
 return `
-<div class="property">
+<div class="property"
+style="cursor:pointer"
+onclick="openAreaFolder('${category}',${index})">
 
 <h3>
-📐 ${range.title}
+📂 ${range.title}
 </h3>
 
-${group.map(p => `
-
-<div style="
-border-top:1px solid #ddd;
-padding-top:12px;
-margin-top:12px;
-">
-
-<h3>${p.type} در ${p.location}</h3>
-
 <p>
-💰 <span class="price">
-${p.price} میلیارد تومان
-</span>
+${group.length} فایل
 </p>
-
-<p>
-📐 ${p.area} متر
-&nbsp;&nbsp;
-🛏️ ${p.rooms || "-"} خواب
-&nbsp;&nbsp;
-🏢 طبقه ${p.floor || "-"}
-</p>
-
-</div>
-
-`).join("")}
 
 </div>
 `;
 
 }).join("");
+
+document.getElementById("filesBox").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function openAreaFolder(category,index){
+
+const areaRanges = [
+{min:0,max:50,title:"زیر ۵۰ متر"},
+{min:50,max:80,title:"۵۰ تا ۸۰ متر"},
+{min:80,max:120,title:"۸۰ تا ۱۲۰ متر"},
+{min:120,max:Infinity,title:"بالای ۱۲۰ متر"}
+];
+
+const range = areaRanges[index];
+
+const files = properties.filter(p =>
+p.category === category &&
+Number(p.area) >= range.min &&
+Number(p.area) < range.max
+);
+
+document.getElementById("filesTitle").innerText =
+"📂 " + category + " / " + range.title;
+
+renderProperties(files);
 
 document.getElementById("filesBox").scrollIntoView({
 behavior:"smooth"
