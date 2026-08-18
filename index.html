@@ -1257,24 +1257,31 @@ async function saveProperty(){
 
 const property = {
 
-id: editingId || Date.now(),
+  id: editingId || Date.now(),
 
-category: document.getElementById("category").value,
-type: document.getElementById("type").value,
-area: document.getElementById("area").value,
-price: document.getElementById("price").value,
-rooms: document.getElementById("rooms").value,
-location: document.getElementById("location").value,
-floor: document.getElementById("floor").value,
-phone: document.getElementById("phone").value,
-address: document.getElementById("address").value,
-description: document.getElementById("description").value,
+  category: document.getElementById("category").value,
+  type: document.getElementById("type").value,
+  area: document.getElementById("area").value,
+  price: document.getElementById("price").value,
+  rooms: document.getElementById("rooms").value,
+  location: document.getElementById("location").value,
+  floor: document.getElementById("floor").value,
 
-parking: document.getElementById("parking").checked,
-pool: document.getElementById("pool").checked,
-sauna: document.getElementById("sauna").checked,
-master_bedroom: document.getElementById("master").checked
+  phone: document.getElementById("phone").value,
+  address: document.getElementById("address").value,
+  description: document.getElementById("description").value,
 
+  parking: document.getElementById("parking").checked,
+  elevator: document.getElementById("elevator").checked,
+  storage: document.getElementById("storage").checked,
+  terrace: document.getElementById("terrace").checked,
+
+  pool: document.getElementById("pool").checked,
+  sauna: document.getElementById("sauna").checked,
+  master_bedroom: document.getElementById("master").checked,
+
+  // اضافه‌شدن عکس‌ها
+  photos: currentPhotos
 };
 
 if(
