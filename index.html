@@ -278,6 +278,38 @@ font-size:25px
 }
 
 }
+.main-menu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:18px 0;
+}
+
+.menu-item{
+  border:1px solid #e5e9e6;
+  background:#fff;
+  color:#123c2d;
+  border-radius:14px;
+  padding:14px 8px;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.menu-item span{
+  display:block;
+  font-size:20px;
+  margin-bottom:5px;
+}
+
+.menu-item b{
+  font-size:13px;
+}
+
+.menu-item.active{
+  background:#123c2d;
+  color:#fff;
+  border-color:#123c2d;
+} 
 </style>
 </head>
 
