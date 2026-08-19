@@ -1307,7 +1307,7 @@ return;
 const { data, error } = await supabaseClient
 .from("properties")
 .insert([{
-
+TitelwTitleid: String(property.id),
 
 deal_type: property.category,
 
