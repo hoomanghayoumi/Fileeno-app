@@ -440,18 +440,6 @@ class="box hidden">
 </select>
 
 </div>
-<script>
-const categorySelect = document.getElementById("category");
-const rentFields = document.getElementById("rentFields");
-
-categorySelect.addEventListener("change", function () {
-  if (this.value === "رهن و اجاره") {
-    rentFields.style.display = "block";
-  } else {
-    rentFields.style.display = "none";
-  }
-});
-</script><div>
 
 <label>
 نوع ملک
@@ -2612,6 +2600,21 @@ document.getElementById("propertyList").innerHTML =
 loadPropertiesFromSupabase();
 </script>
  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+  const categorySelect = document.getElementById("category");
+  const rentFields = document.getElementById("rentFields");
+
+  categorySelect.addEventListener("change", function () {
+    if (this.value === "رهن و اجاره") {
+      rentFields.style.display = "block";
+    } else {
+      rentFields.style.display = "none";
+    }
+  });
+
+});
+</script>
 </body>
 </html>
