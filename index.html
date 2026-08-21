@@ -1389,44 +1389,32 @@ return;
 }
 
 const { data, error } = await supabaseClient
-.from("properties")
-.insert([{
-TitelwTitleid: String(property.id),
+  .from("properties")
+  .upsert([{
+    TitelwTitleid: String(property.id),
 
-deal_type: property.category,
+    deal_type: property.category,
+    area: Number(property.area),
+    bedrooms: Number(property.rooms) || null,
 
-area: Number(property.area),
+    parking: property.parking,
+    pool: property.pool,
+    sauna: property.sauna,
+    master_bedroom: property.master_bedroom,
 
-bedrooms: Number(property.rooms) || null,
+    category: property.category,
+    type: property.type,
+    price: Number(property.price),
+    rooms: Number(property.rooms) || null,
+    location: property.location,
+    floor: Number(property.floor) || null,
 
-parking: property.parking,
+    phone: property.phone,
+    address: property.address,
+    description: property.description
 
-pool: property.pool,
-
-sauna: property.sauna,
-
-master_bedroom: property.master_bedroom,
-
-category: property.category,
-
-type: property.type,
-
-price: Number(property.price),
-
-rooms: Number(property.rooms) || null,
-
-location: property.location,
-
-floor: Number(property.floor) || null,
-
-phone: property.phone,
-
-address: property.address,
-
-description: property.description
-
-}])
-.select();
+  }])
+  .select();
 
 if(error){
 
