@@ -1086,17 +1086,8 @@ let editingId=null;
 let editingCustomerId=null;
 
 let currentPhotos=[];
-async function loadPropertiesFromSupabase(){
 
-  const { data, error } = await supabaseClient
-    .from("properties")
-    .select("*")
-    .order("created_at", { ascending: false });
 
-  if(error){
-    console.error(error);
-    return;
-  }
 
   if(data){
     properties = data.map(row => ({
@@ -2558,11 +2549,7 @@ behavior:"smooth"
 
 document.getElementById("propertyList").innerHTML =
 '<div class="empty">یک دسته‌بندی انتخاب کنید.</div>';
-document.addEventListener("DOMContentLoaded", function(){
 
-  loadPropertiesFromSupabase();
-
-});
 </script>
  
 
