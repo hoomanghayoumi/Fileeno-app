@@ -1097,7 +1097,8 @@ async function loadPropertiesFromSupabase(){
     console.error("Supabase Error:", error);
     return;
   }
-
+console.log("SUPABASE DATA:", data);
+console.log("SUPABASE ERROR:", error);
   if(data && data.length){
 
     properties = data.map(row => ({
