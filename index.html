@@ -438,10 +438,18 @@ class="box hidden">
 </select>
 
 </div>
+<script>
+const categorySelect = document.getElementById("category");
+const rentFields = document.getElementById("rentFields");
 
-
-
-<div>
+categorySelect.addEventListener("change", function () {
+  if (this.value === "رهن و اجاره") {
+    rentFields.style.display = "block";
+  } else {
+    rentFields.style.display = "none";
+  }
+});
+</script><div>
 
 <label>
 نوع ملک
@@ -524,7 +532,49 @@ priceInput.addEventListener("input", function () {
 <div id="priceFormatted"
      style="margin-top:6px;font-size:13px;color:#087346;font-weight:bold">
 </div>
+<div id="rentFields" style="display:none;">
 
+  <div>
+    <label>
+      پول پیش (تومان)
+    </label>
+
+    <input
+      id="deposit"
+      type="text"
+      inputmode="numeric"
+      placeholder="مثلاً 500000000"
+      autocomplete="off"
+    >
+  </div>
+
+  <div>
+    <label>
+      اجاره ماهانه (تومان)
+    </label>
+
+    <input
+      id="rent"
+      type="text"
+      inputmode="numeric"
+      placeholder="مثلاً 15000000"
+      autocomplete="off"
+    >
+  </div>
+
+</div>
+
+<script>
+function formatPriceInput(input) {
+  input.addEventListener("input", function () {
+    let value = this.value.replace(/\D/g, "");
+    this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "/");
+  });
+}
+
+formatPriceInput(document.getElementById("deposit"));
+formatPriceInput(document.getElementById("rent"));
+</script>
 
 <div>
 
