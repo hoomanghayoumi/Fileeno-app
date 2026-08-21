@@ -1086,7 +1086,48 @@ let editingId=null;
 let editingCustomerId=null;
 
 let currentPhotos=[];
+async function loadPropertiesFromSupabase(){
 
+  const { data, error } = await supabaseClient
+    .from("properties")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  if(data){
+    properties = data.map(row => ({
+      id: Number(row.TitelwTitleid),
+      category: row.category || row.deal_type || "",
+      type: row.type || "",
+      area: row.area || "",
+      price: row.price || "",
+      rooms: row.rooms || row.bedrooms || "",
+      location: row.location || "",
+      floor: row.floor || "",
+      phone: row.phone || "",
+      address: row.address || "",
+      description: row.description || "",
+      parking: !!row.parking,
+      elevator: !!row.elevator,
+      storage: !!row.storage,
+      terrace: !!row.terrace,
+      pool: !!row.pool,
+      sauna: !!row.sauna,
+      master_bedroom: !!row.master_bedroom,
+      photos: []
+    }));
+
+    localStorage.setItem(
+      "fileinoProperties",
+      JSON.stringify(properties)
+    );
+
+    showAllFiles();
+  }
 
 
 function saveData(){
