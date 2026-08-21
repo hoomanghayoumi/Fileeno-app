@@ -512,7 +512,15 @@ placeholder="مثلاً 120"
   placeholder="مثلاً 2500000000"
   autocomplete="off"
 >
+<script>
+const priceInput = document.getElementById("price");
 
+priceInput.addEventListener("input", function () {
+  let value = this.value.replace(/\D/g, "");
+
+  this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "/");
+});
+</script>
 <div id="priceFormatted"
      style="margin-top:6px;font-size:13px;color:#087346;font-weight:bold">
 </div>
