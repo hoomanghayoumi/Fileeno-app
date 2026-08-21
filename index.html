@@ -1092,11 +1092,12 @@ async function loadPropertiesFromSupabase(){
   const { data, error } = await supabaseClient
     .from("properties")
     .select("*");
+if(error){
+  alert("خطای Supabase: " + error.message);
+  return;
+}
 
-  if(error){
-    console.error("Supabase Error:", error);
-    return;
-  }
+alert("تعداد فایل‌ها: " + data.length);
 console.log("SUPABASE DATA:", data);
 console.log("SUPABASE ERROR:", error);
   if(data && data.length){
