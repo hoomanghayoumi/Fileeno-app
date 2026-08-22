@@ -330,7 +330,9 @@ font-size:25px
 
 </div>
 </header>
-
+<button onclick="goHome()" class="backBtn">
+  ← صفحه اصلی
+</button>
 
 <main class="container">
 
@@ -1245,7 +1247,12 @@ reader.readAsDataURL(file);
 
 
 /* نمایش فرم */
-
+function goHome() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 function showRegister(category=""){
 
 document.getElementById("registerBox")
@@ -2615,6 +2622,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+}
 </script>
 </body>
 </html>
