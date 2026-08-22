@@ -1398,7 +1398,7 @@ if (!user) {
   return;
 }
 const property = {
-
+user_id: user.id,
   id: editingId || Date.now(),
 
   category: document.getElementById("category").value,
@@ -1449,6 +1449,7 @@ return;
 const { data, error } = await supabaseClient
   .from("properties")
   .upsert([{
+   user_id: property.user_id,
     TitelwTitleid: String(property.id),
 
     deal_type: property.category,
