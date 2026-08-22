@@ -1391,7 +1391,12 @@ behavior:"smooth"
 /* ذخیره ملک */
 
 async function saveProperty(){
+const { data: { user } } = await supabase.auth.getUser();
 
+if (!user) {
+  alert("لطفاً ابتدا وارد حساب کاربری شوید.");
+  return;
+}
 const property = {
 
   id: editingId || Date.now(),
